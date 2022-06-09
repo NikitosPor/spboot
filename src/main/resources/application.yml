@@ -1,0 +1,8 @@
+application:
+  answers: 3
+  path-en: /questions_en.csv
+  path-ru: /questions_ru.csv
+
+  spring:
+    main:
+      web-application-type: NONE
