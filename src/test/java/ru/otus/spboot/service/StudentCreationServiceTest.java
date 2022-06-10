@@ -1,20 +1,22 @@
 package ru.otus.spboot.service;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
+import org.junit.jupiter.api.Test;
 
-@DisplayName("Тестирование создания инстанса класса Student")
-@SpringBootTest(classes = StudentCreationService.class)
-public class StudentCreationServiceTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    @Autowired
-    ApplicationContext context;
+class StudentCreationServiceTest {
 
+    @BeforeEach
+    void setUp() {
+    }
 
+    @AfterEach
+    void tearDown() {
+    }
 
-
+    @Test
+    void askNameAndCreateStudent() {
+    }
 }
