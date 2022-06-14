@@ -42,6 +42,7 @@ class StudentCreationServiceTest {
         Scanner reader = Mockito.mock(Scanner.class);
         when(reader.nextLine()).thenReturn("ИВАН ДРАГО");
         Student student = studentCreationService.askNameAndCreateStudent();
+
         assertThat(student.getFullName()).isEqualTo("ИВАН ДРАГО");
     }
 }
