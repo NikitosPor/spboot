@@ -1,11 +1,13 @@
 package ru.otus.spboot.service;
 
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 import ru.otus.spboot.domain.Student;
 
 import java.io.IOException;
 import java.util.Locale;
 
+@Service
 public class StudentCreationService {
     private final MessageSource messages;
    // private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

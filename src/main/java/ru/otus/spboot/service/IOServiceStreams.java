@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 @Component
 public class IOServiceStreams implements IOService {
-    private final PrintStream output;
-    private final Scanner input;
+    private final PrintStream output = System.out;
+    private final Scanner input = new Scanner(System.in);
 
-    public IOServiceStreams() {
-        output = System.out;
-        input = new Scanner(System.in);
-    }
+//    public IOServiceStreams() {
+//        output = System.out;
+//        input = new Scanner(System.in);
+//    }
 
     @Override
     public void outputString(String s){

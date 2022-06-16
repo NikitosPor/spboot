@@ -2,43 +2,36 @@ package ru.otus.spboot.service;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.MessageSource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.otus.spboot.domain.Student;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+
 
 @DisplayName("Тест сервиса StudentCreationService")
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+public class StudentCreationServiceTest {
 
-@ExtendWith(MockitoExtension.class)
-class StudentCreationServiceTest {
+    @MockBean
+    private IOServiceStreams ioService;
 
-    @Mock
-    private MessageSource messages;
+    @MockBean
+    private AppRunService appRunService;
 
-    @InjectMocks
+    @Autowired
     private StudentCreationService studentCreationService;
-
-    @BeforeAll
-    static void beforeAll() {
-        var is = new ByteArrayInputStream("ИВАН ДРАГО".getBytes(StandardCharsets.UTF_8));
-        System.setIn(is);
-    }
 
     @DisplayName("Тест")
     @Test
     void studentCreationTest() throws Exception {
-        Student student = studentCreationService.askNameAndCreateStudent();
+        given(ioService.readString()).willReturn("ИВАН ДРАГО");
 
-        assertThat(student.getFullName()).isEqualTo("ИВАН ДРАГО");
+        assertThat(studentCreationService.askNameAndCreateStudent().getFullName()).isEqualTo("ИВАН ДРАГО");
     }
 }
