@@ -13,18 +13,20 @@ public class AppRunService implements CommandLineRunner {
     int rightAnswersCounter;
     private final QuestionAskService questionAskService;
     private final MessageSource messages;
+    private final IOServiceStreams ioService;
 
     //@Autowired
-    public AppRunService(QuestionAskService questionAskService, MinRightQuestionsDao count, MessageSource messages) {
+    public AppRunService(QuestionAskService questionAskService, MinRightQuestionsDao count, MessageSource messages, IOServiceStreams ioService) {
         this.questionAskService = questionAskService;
         minRightAnswersLimit = count.getMinRightQuestionsCount();
         this.messages=messages;
+        this.ioService = ioService;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        Student student = new StudentCreationService(messages).askNameAndCreateStudent();
+        Student student = new StudentCreationService(messages, ioService).askNameAndCreateStudent();
         rightAnswersCounter = questionAskService.askAllQuestionsAndReturnCounter();
-        new ResultsOutputService(messages).printResults(student, rightAnswersCounter, minRightAnswersLimit);
+        new ResultsOutputService(messages, ioService).printResults(student, rightAnswersCounter, minRightAnswersLimit);
     }
 }

@@ -7,16 +7,18 @@ import java.util.Locale;
 
 public class ResultsOutputService {
     private final MessageSource messages;
+    private final IOServiceStreams ioService;
 
-    public ResultsOutputService(MessageSource messages) {
+    public ResultsOutputService(MessageSource messages, IOServiceStreams ioService) {
         this.messages = messages;
+        this.ioService = ioService;
     }
 
     void printResults(Student student, int rightAnswersCounter, int minRightAnswers) {
         if (rightAnswersCounter < minRightAnswers) {
-            System.out.println(student.getFullName() + " " + messages.getMessage("properties.output.exam.negative", null, Locale.getDefault()));
+            ioService.outputString(student.getFullName() + " " + messages.getMessage("properties.output.exam.negative", null, Locale.getDefault()));
         } else {
-            System.out.println(student.getFullName() + " " + messages.getMessage("properties.output.exam.positive", null, Locale.getDefault()));
+            ioService.outputString(student.getFullName() + " " + messages.getMessage("properties.output.exam.positive", null, Locale.getDefault()));
         }
     }
 }
