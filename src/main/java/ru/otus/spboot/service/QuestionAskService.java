@@ -33,12 +33,11 @@ public class QuestionAskService {
         for (QuestionWithAnswers stringLine : listOfQuestionsWithAnswers) {
             String answer;
             String rightAnswer = stringLine.getRightAnswer();
-            System.out.println(stringLine.getQuestion() + " "
+            ioService.outputString(stringLine.getQuestion() + " "
                     + stringLine.getAnswerX(0) + " "
                     + stringLine.getAnswerX(1) + " "
                     + stringLine.getAnswerX(2)
             );
-           // BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             ioService.outputString(messages.getMessage("properties.input.answer", null, Locale.getDefault()));
             answer = this.ioService.readString();
             if (Objects.equals(answer, rightAnswer)) {
