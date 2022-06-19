@@ -1,6 +1,5 @@
  package ru.otus.spboot.service;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.otus.spboot.dao.MinRightQuestionsDao;
@@ -8,7 +7,7 @@ import ru.otus.spboot.domain.Student;
 
 
 @Service
-public class AppRunService implements CommandLineRunner {
+public class AppRunService {
     int minRightAnswersLimit;
     int rightAnswersCounter;
     private final QuestionAskService questionAskService;
@@ -23,8 +22,7 @@ public class AppRunService implements CommandLineRunner {
         this.ioService = ioService;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
+    public void run() throws Exception {
         Student student = new StudentCreationService(messages, ioService).askNameAndCreateStudent();
         rightAnswersCounter = questionAskService.askAllQuestionsAndReturnCounter();
         new ResultsOutputService(messages, ioService).printResults(student, rightAnswersCounter, minRightAnswersLimit);

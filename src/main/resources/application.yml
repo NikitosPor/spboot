@@ -3,6 +3,7 @@ application:
   path-en: /questions_en.csv
   path-ru: /questions_ru.csv
 
-  spring:
-    main:
-      web-application-type: NONE
+spring:
+  main:
+    allow-circular-references: true
+    web-application-type: NONE
