@@ -6,7 +6,6 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
 import org.springframework.shell.standard.ShellOption;
-import org.springframework.stereotype.Service;
 import ru.otus.spboot.service.AppRunService;
 
 import java.util.Objects;
@@ -32,14 +31,14 @@ public class ApplicationShellController {
         }
     }
 
-    @ShellMethod(value = "Test initiation", key = {"t", "test"})
+    @ShellMethod(value = "Test initiation", key = {"e", "exam"})
     @ShellMethodAvailability(value = "isConfirmationReceived")
     public String askForTestStart(String studentSolution) throws Exception {
         if (Objects.equals(studentSolution, "start")) {
             app.run();
             return "Тест завершен";
         }else{
-            return "Если хотите запустить тест сначала, то введите команду 't start'";
+            return "Если хотите запустить тест сначала, то введите команду 'e start'";
         }
     }
 

@@ -6,7 +6,7 @@ application:
 spring:
   shell:
     interactive:
-      enabled: true
+      enabled: false
   main:
     allow-circular-references: true
     web-application-type: NONE
