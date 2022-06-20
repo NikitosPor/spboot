@@ -4,6 +4,9 @@ application:
   path-ru: /questions_ru.csv
 
 spring:
+  shell:
+    interactive:
+      enabled: false
   main:
     allow-circular-references: true
     web-application-type: NONE
