@@ -5,12 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.shell.Availability;
 import org.springframework.shell.Shell;
 import ru.otus.spboot.service.AppRunService;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Тесты shell команд")
 @SpringBootTest
@@ -38,30 +36,30 @@ class ApplicationShellControllerTest {
     @DisplayName("Позитивный тест подтверждения согласия на обработку персональных данных")
     @Test
     void askForPersonalInfoUsageConfirmationPositiveTest() {
-        String res = (String) shell.evaluate(()->String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, YES_COMMAND));
+        String res = (String) shell.evaluate(() -> String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, YES_COMMAND));
         assertThat(res).isEqualTo(PERSONAL_INFO_CONFIRMATION_REFUSE_ERROR);
     }
 
     @DisplayName("Позитивный тест старта экзамена c правильным ключем")
     @Test
     void examStartWithPersonalInfoUsageConfirmationPositiveTest() {
-        shell.evaluate(()->String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, YES_COMMAND));
-        String res = (String) shell.evaluate(()->String.format(COMMAND_INPUT_PATTERN, EXAM_START_COMMAND, START_COMMAND));
+        shell.evaluate(() -> String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, YES_COMMAND));
+        String res = (String) shell.evaluate(() -> String.format(COMMAND_INPUT_PATTERN, EXAM_START_COMMAND, START_COMMAND));
         assertThat(res).isEqualTo(EXAM_PASS_CONFIRMATION);
     }
 
     @DisplayName("Негативный тест подтверждения согласия на обработку персональных данных")
     @Test
     void askForPersonalInfoUsageConfirmationNegativeTest() {
-        String res = (String) shell.evaluate(()->String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, WRONG_COMMAND));
+        String res = (String) shell.evaluate(() -> String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, WRONG_COMMAND));
         assertThat(res).isEqualTo(PERSONAL_INFO_CONFIRMATION_INPUT_ERROR);
     }
 
     @DisplayName("Негативный тест попытки старта экзамена c неправильной командой")
     @Test
     void examStartWithWrongCommandNegativeTest() {
-        shell.evaluate(()->String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, YES_COMMAND));
-        String res = (String) shell.evaluate(()->String.format(COMMAND_INPUT_PATTERN, EXAM_START_COMMAND, WRONG_COMMAND));
+        shell.evaluate(() -> String.format(COMMAND_INPUT_PATTERN, AGREEMENT_CONFIRMATION_COMMAND, YES_COMMAND));
+        String res = (String) shell.evaluate(() -> String.format(COMMAND_INPUT_PATTERN, EXAM_START_COMMAND, WRONG_COMMAND));
         assertThat(res).isEqualTo(QUIZ_COMMAND_START_ERROR);
     }
 

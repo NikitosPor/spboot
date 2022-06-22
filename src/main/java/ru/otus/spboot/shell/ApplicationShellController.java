@@ -26,7 +26,7 @@ public class ApplicationShellController {
         if (Objects.equals(confirmation, "yes")) {
             this.personalInfoUsageConfirmation = confirmation;
             return "Вы подтвердили ваше согласие на обработку персональных данных";
-        } else{
+        } else {
             return "Вы не подтвердили ваше согласие на обработку персональных данных. Если хотите подтвердить, то введите команду 'c yes'";
         }
     }
@@ -37,7 +37,7 @@ public class ApplicationShellController {
         if (Objects.equals(studentSolution, "start")) {
             app.run();
             return "Тест завершен";
-        }else{
+        } else {
             return "Если хотите запустить тест сначала, то введите команду 'e start'";
         }
     }

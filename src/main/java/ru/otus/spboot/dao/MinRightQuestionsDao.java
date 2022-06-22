@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public final class MinRightQuestionsDao {
     private final int minRightQuestionsCount;
 
-    public MinRightQuestionsDao(@Value("${application.answers}") int count){
+    public MinRightQuestionsDao(@Value("${application.answers}") int count) {
         minRightQuestionsCount = count;
     }
 

@@ -10,9 +10,7 @@ import java.util.Locale;
 @Service
 public class StudentCreationService {
     private final MessageSource messages;
-   // private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private final IOServiceStreams ioService;
-   // private final Scanner reader = new Scanner(System.in);
 
     public StudentCreationService(MessageSource messages, IOServiceStreams ioService) {
         this.messages = messages;

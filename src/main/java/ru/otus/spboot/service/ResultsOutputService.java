@@ -1,10 +1,12 @@
 package ru.otus.spboot.service;
 
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 import ru.otus.spboot.domain.Student;
 
 import java.util.Locale;
 
+@Service
 public class ResultsOutputService {
     private final MessageSource messages;
     private final IOServiceStreams ioService;
