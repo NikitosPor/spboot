@@ -1,5 +1,6 @@
 package ru.otus.spboot.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.otus.spboot.dao.LinesFromCsvFileDao;
 import ru.otus.spboot.domain.QuestionWithAnswers;
@@ -17,11 +18,13 @@ import org.springframework.context.MessageSource;
 public class QuestionAskService {
     private final LinesFromCsvFileDao linesFromCsvFileDao;
     private final MessageSource messages;
+    private final IOServiceStreams ioService;
 
     //@Autowired
-    public QuestionAskService(LinesFromCsvFileDao linesFromCsvFileDao, MessageSource messages) {
+    public QuestionAskService(LinesFromCsvFileDao linesFromCsvFileDao, IOServiceStreams ioService, MessageSource messages) {
         this.linesFromCsvFileDao = linesFromCsvFileDao;
         this.messages = messages;
+        this.ioService = ioService;
     }
 
     public Integer askAllQuestionsAndReturnCounter() throws IOException {
@@ -30,14 +33,13 @@ public class QuestionAskService {
         for (QuestionWithAnswers stringLine : listOfQuestionsWithAnswers) {
             String answer;
             String rightAnswer = stringLine.getRightAnswer();
-            System.out.println(stringLine.getQuestion() + " "
+            ioService.outputString(stringLine.getQuestion() + " "
                     + stringLine.getAnswerX(0) + " "
                     + stringLine.getAnswerX(1) + " "
                     + stringLine.getAnswerX(2)
             );
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(messages.getMessage("properties.input.answer", null, Locale.getDefault()));
-            answer = reader.readLine();
+            ioService.outputString(messages.getMessage("properties.input.answer", null, Locale.getDefault()));
+            answer = this.ioService.readString();
             if (Objects.equals(answer, rightAnswer)) {
                 counterOfRightAnswers++;
             }

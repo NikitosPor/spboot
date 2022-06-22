@@ -9,13 +9,7 @@ public final class Student {
         this.sureName = sureName;
     }
 
-//     public String getName(){return name;}
-
-//    public String getSureName() {
-//        return sureName;
-//    }
-
-    public String getFullName(){
+    public String getFullName() {
         return name + " " + sureName;
     }
 }

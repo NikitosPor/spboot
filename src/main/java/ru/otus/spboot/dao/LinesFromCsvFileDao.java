@@ -19,15 +19,14 @@ public class LinesFromCsvFileDao {
     private final List<QuestionWithAnswers> listOfQuestionsWithAnswers = new ArrayList<>();
     private final String filePathDest;
 
-    //   public LinesFromCsvFileDao(@Value("#{'/questions_' + @systemProperties['user.language'] + '.csv'}") String filePath) {
     public LinesFromCsvFileDao(@Value("#{'/questions_' + @systemProperties['user.language'] + '.csv'}") String filePath) {
         this.filePathDest = filePath;
     }
 
     public List<QuestionWithAnswers> getAllQuestionsAndAnswers() throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(Objects
-                             .requireNonNull(this.getClass()
-                                     .getResourceAsStream(filePathDest))))) {
+                .requireNonNull(this.getClass()
+                        .getResourceAsStream(filePathDest))))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 ArrayList<String> listOfStrings = new ArrayList<String>();
